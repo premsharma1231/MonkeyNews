@@ -1,0 +1,63 @@
+// onClick={this.GatheringCategory = () =>{this.props.updateData({newCategory : "business"})}}
+// onClick={this.GatheringCategory = () =>{this.props.updateData({newCategory : "entertainment"})}}
+// onClick={this.GatheringCategory = () =>{this.props.updateData({newCategory : "general"})}}
+// onClick={this.GatheringCategory = () =>{this.props.updateData({newCategory : "health"})}}
+// onClick={this.GatheringCategory = () =>{this.props.updateData({newCategory : "science"})}}
+// onClick={this.GatheringCategory = () =>{this.props.updateData({newCategory : "sports"})}}
+// onClick={this.GatheringCategory = () =>{this.props.updateData({newCategory : "technology"})}}
+
+
+ae: UnitedArabEmirates
+ar: Argentina
+at: Austria
+au: Australia
+be: Belgium
+bg: Bulgaria
+br: Brazil
+ca: Canada
+ch: Switzerland
+cn: China
+co: Colombia
+cu: Cuba
+cz: CzechRepublic
+de: Germany
+eg: Egypt
+fr: France
+gb: UnitedKingdom
+gr: Greece
+hk: HongKong
+hu: Hungary
+id: Indonesia
+ie: Ireland
+il: Israel
+in: India
+it: Italy
+jp: Japan
+kr: SouthKorea
+lt: Lithuania
+lv: Latvia
+ma: Morocco
+mx: Mexico
+my: Malaysia
+ng: Nigeria
+nl: Netherlands
+no: Norway
+nz: NewZealand
+ph: Philippines
+pl: Poland
+pt: Portugal
+ro: Romania
+rs: Serbia
+ru: Russia
+sa: SaudiArabia
+se: Sweden
+sg: Singapore
+si: Slovenia
+sk: Slovakia
+th: Thailand
+tr: Turkey
+tw: Taiwan
+ua: Ukraine
+us: UnitedStates
+ve: Venezuela
+za: SouthAfrica
