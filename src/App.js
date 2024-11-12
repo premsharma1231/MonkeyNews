@@ -12,11 +12,11 @@ export class App extends Component {
   
   NewsCMPWithParams = () => {
     const { country, category } = useParams();
-    const isCountryFirst = country && country.length === 2;
+    // const isCountryFirst = country && country.length === 2;
     return (
       <NewsCMP
-      country={isCountryFirst ? country : category || "in"}
-      category={isCountryFirst ? category : country || "general"}
+      country={"us"}
+      category={category}
       mode = {this.state.mode}
       setprogress = {this.setprogress}
       />
@@ -64,14 +64,14 @@ export class App extends Component {
             color={this.state.mode === 'light' ? '#3f3f3f' : '#eeeeee'}
             progress={this.state.progress}
             height={8}
-          />  
+          />
           <Routes>
-            <Route path="/" element={<NewsCMP country={this.state.country} setprogress={this.setprogress}   mode={this.state.mode} category={this.state.category} />} />
+            <Route path="/country/usa" element={<NewsCMP country={this.state.country} setprogress={this.setprogress} mode={this.state.mode} category={this.state.category} />} />
             <Route path="/about" element={<About mode={this.state.mode} setprogress = {this.setprogress}/>} />
             <Route path="/:country"   element={<this.NewsCMPWithParams/>} />
-            <Route path="/:category"   element={<this.NewsCMPWithParams/>} />
-            <Route path="/:country/:category"   element={<this.NewsCMPWithParams/>} />
-            <Route path="/:category/:country"    element={<this.NewsCMPWithParams/>} />
+            <Route path="/country/usa/:category"  element={<this.NewsCMPWithParams/>} />
+            {/* <Route path="/:country/:category"   element={<this.NewsCMPWithParams/>} />
+            <Route path="/:category/:country"    element={<this.NewsCMPWithParams/>} /> */}
           </Routes>
         </Router>
       </>

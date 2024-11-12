@@ -117,7 +117,7 @@ export class NavBar extends Component {
             <ul className="dropdown-menu">
               {categories.map((category) => (
                 <li key={category} onClick={() => this.updateCategory(category)}>
-                  <Link className="dropdown-item hover:text-white leading-10 hover:bg-slate-800" to={`/${category}`}>
+                  <Link className="dropdown-item hover:text-white leading-10 hover:bg-slate-800" to={`/country/usa/${category}`}>
                     {category.charAt(0).toUpperCase() + category.slice(1)}
                   </Link>
                 </li>
