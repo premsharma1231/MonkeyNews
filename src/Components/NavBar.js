@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
+
 // import { useMediaQuery } from 'react-responsive'
 
 
@@ -22,6 +24,15 @@ export class NavBar extends Component {
   //   const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
   //   const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
   // }
+  
+  ShowingAlert = () => {
+    Swal.fire({
+      title: "Important Message...",
+      text: "Right now, just news from the USA is available. Use it and have fun we're giving you some amazing content !!",
+      icon: "exclamation",
+    });
+  }
+  
 
   render() {
     const categories = [
@@ -53,7 +64,7 @@ export class NavBar extends Component {
        { code: 'id', name: 'Indonesia' },
        { code: 'ie', name: 'Ireland' },
        { code: 'il', name: 'Israel' },
-       { code: 'in', name: 'India' },
+      //  { code: 'in', name: 'India' },
        { code: 'it', name: 'Italy' },
        { code: 'jp', name: 'Japan' },
        { code: 'kr', name: 'South Korea' },
@@ -114,8 +125,8 @@ export class NavBar extends Component {
             </ul>
           </div>
 
-          <div className="dropdown mr-2">
-            <a className="btn btn-secondary dropdown-toggle bg-gray-800" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div className="dropdown mr-2" onClick={this.ShowingAlert}>
+            <a className="btn btn-secondary dropdown-toggle bg-gray-800" href="/" role="button" disabled data-bs-toggle="dropdown" aria-expanded="false">
               Select Country
             </a>
             <ul className="dropdown-menu h-96 overflow-scroll">

@@ -29,6 +29,10 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
       this.colorChanging();
       const accordionItems = [
         {
+          title: 'Important',
+          content: `Due to a server issue, we are only able to watch news for the United States. As a result, we have disabled the nation drop-down menu, but we will be resuming it soon. Please stay connected.`,
+        },
+        {
           title: 'About "NewsApi"',
           content: `Hi there to all of you.<strong> This is my personal learning and practice app</strong>, so welcome to our newsapp<code> called monkeyNews</code>.\n - We used the newsAPI to fetch all the newsData and show the data to you. \n - I would like to suggest that you all use this API as it is the best api for newsApplications because it is giving you the most efficient features and will help you to build next level modifications and features like <code> <i> PageSize, Page,Q stands for inquiry because you can search for any topic, nation name because you can receive news about your country firsthand if you'd like, and language because you can view the news in your mother tongue </i></code>.`,
         },
