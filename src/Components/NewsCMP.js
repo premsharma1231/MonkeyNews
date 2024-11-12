@@ -358,7 +358,7 @@ export class NewsCMP extends Component {
    fetchMoreData = async (props) => {
     this.props.setprogress(0);
         //  const URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&pageSize=${this.state.pageSize}&page=${this.state.page+1}&apiKey=${this.state.apiKey}`;
-        const URL = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&pageSize=${this.state.pageSize}&apiKey=${this.state.apiKey}`;
+        const URL = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&pageSize=${this.state.pageSize}&page=${this.state.page + 1}&apiKey=${this.state.apiKey}`;  
          this.props.setprogress(20);
          let data = await fetch(URL);
          let parsedData = await data.json();
@@ -366,7 +366,7 @@ export class NewsCMP extends Component {
        this.setState({
          articles: this.state.articles.concat(parsedData.articles),
          totalResults: parsedData.totalResults,
-         page: this.state.page+1,
+         page: this.state.page + 1,
        });
        this.props.setprogress(100);
       };
