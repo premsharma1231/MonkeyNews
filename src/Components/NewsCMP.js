@@ -7,6 +7,7 @@ import { v4 as uuid } from 'uuid';
 export class NewsCMP extends Component {
   static defaultProps = {
     country: "us",
+    language: "en",
     category: "general",
   };
 
@@ -306,7 +307,7 @@ export class NewsCMP extends Component {
     try {
       this.props.setprogress(20);
       // const URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&pageSize=${this.state.pageSize}&page=${this.state.page}&apiKey=${this.state.apiKey}`;
-      const URL = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&pageSize=${this.state.pageSize}&apiKey=${this.state.apiKey}`;
+      const URL = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&language=${this.props.language}&pageSize=${this.state.pageSize}&apiKey=${this.state.apiKey}`;
       console.log(URL);
       
       document.title = `NewsMonkey - ${this.Capitalize(this.props.category)}`;

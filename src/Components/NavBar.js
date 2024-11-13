@@ -97,6 +97,22 @@ export class NavBar extends Component {
        { code: 'za', name: 'South Africa' },
     ];
 
+    const language = [
+      { code: 'ar', name: 'Arabic'},
+      { code: 'de', name: 'German'},
+      { code: 'en', name: 'English'},
+      { code: 'es', name: 'Spanish'},
+      { code: 'fr', name: 'French'},
+      { code: 'he', name: 'Hebrew'},
+      { code: 'it', name: 'Italian'},
+      { code: 'nl', name: 'Dutch'},
+      { code: 'no', name: 'Norwegian'},
+      { code: 'pt', name: 'Portuguese'},
+      { code: 'ru', name: 'Russian'},
+      { code: 'se', name: 'Swedish'},
+      { code: 'zh', name: 'Chinese'},
+    ]
+
     return (
       <div className={`flex list-none flex-row h-16 justify-between sticky top-0 z-10 align-middle bg-slate-500 text-white leading-[3.7rem] pr-5 pl-5`}
       style={{backgroundColor: this.props.mode === 'light' ? 'rgb(112, 128, 144)' : 'rgb(0 0 0 / 48%)'}}>
@@ -125,8 +141,8 @@ export class NavBar extends Component {
             </ul>
           </div>
 
-          <div className="dropdown mr-2" onClick={this.ShowingAlert}>
-            <a className="btn btn-secondary dropdown-toggle bg-gray-800" href="/" role="button" disabled data-bs-toggle="dropdown" aria-expanded="false">
+          <div className="dropdown mr-2">
+            <a className="btn btn-secondary dropdown-toggle bg-gray-800" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Select Country
             </a>
             <ul className="dropdown-menu h-96 overflow-scroll">
@@ -139,7 +155,23 @@ export class NavBar extends Component {
               ))}
             </ul>
           </div>
-        </div>
+
+
+          <div className="dropdown mr-2">
+            <a className="btn btn-secondary dropdown-toggle bg-gray-800" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Select Language
+            </a>
+            <ul className="dropdown-menu h-96 overflow-scroll">
+              {language.map(({ code, name }) => (
+                <li key={name} onClick={() => this.updateLanguage(code)}>
+                  <Link className="dropdown-item hover:text-white leading-10 hover:bg-slate-800" to={`/${code}`}>
+                    {name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>  
 
         <div className="flex align-middle flex-row form-check form-switch">
           <input
