@@ -10,6 +10,8 @@ MonkeyNews is a news application that provides users with the latest articles fr
 - Option to filter news based on categories.
 - Responsive layout for mobile and desktop devices.
 
+https://drive.google.com/file/d/1SdsDve5vY_tZS7lpsMOzisHA5ZqH0Rec/view
+
 ## Installation
 
 To run the app locally, follow these steps:
