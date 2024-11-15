@@ -8,24 +8,39 @@ import About from "./Components/About";
 
 
 
+
+
+const NewsCMPWithParams = ({ mode, setprogress }) => {
+  const { country, category, language } = useParams();
+  return (
+    <NewsCMP
+      country={country || "us"}
+      category={category || "general"}
+      language={language || "en"}
+      mode={mode}
+      setprogress={setprogress}
+    />
+  );
+};
+
 export class App extends Component {
   
-  NewsCMPWithParams = () => {
-    const { country, category, language } = useParams();
-    // const isCountryFirst = country && country.length === 2;
-    return (
-      <NewsCMP
-      country={country}
-      category={category}
-      mode = {this.state.mode}
-      language={language}
-      setprogress = {this.setprogress}
-      />
-    );
-  }
+  // NewsCMPWithParams = () => {
+  //   const { country, category, language } = useParams();
+  //   // const isCountryFirst = country && country.length === 2;
+  //   return (
+  //     <NewsCMP
+  //     country={country || "us"}
+  //     category={category || "general"}
+  //     language={language || "en"}
+  //     mode = {this.state.mode}
+  //     setprogress = {this.setprogress}
+  //     />
+  //   );
+  // }
   
   setprogress = (progress) =>{
-    this.setState({progress : progress})
+    this.setState({progress : progress});
   }
 
   constructor() {
@@ -36,7 +51,7 @@ export class App extends Component {
       language: 'en',
       mode: 'light',
       progress:0,
-    };  
+    };
   }
   
 
@@ -73,11 +88,11 @@ export class App extends Component {
           />
           <Routes>
             <Route path="/country/us" element={<NewsCMP country={this.state.country} setprogress={this.setprogress} mode={this.state.mode} category={this.state.category} />} />
-            <Route path="/about" element={<About mode={this.state.mode} setprogress = {this.setprogress}/>} />
-            <Route path="/:country"   element={<this.NewsCMPWithParams/>} />
-            <Route path="/country/:country/:category"  element={<this.NewsCMPWithParams/>} />
-            <Route path="/:country/:category"   element={<this.NewsCMPWithParams/>} />
-            <Route path="/:category/:country"    element={<this.NewsCMPWithParams/>} />
+            <Route path="/about" element={<About mode={this.state.mode} setprogress={this.setprogress}/>} />
+            <Route path="/:country"   element={<NewsCMPWithParams mode={this.state.mode} setprogress={this.setprogress}/>} />
+            <Route path="/country/:country/:category"  element={<NewsCMPWithParams mode={this.state.mode} setprogress={this.setprogress}/>} />
+            <Route path="/:country/:category"   element={<NewsCMPWithParams mode={this.state.mode} setprogress={this.setprogress}/>} />
+            <Route path="/:category/:country"    element={<NewsCMPWithParams mode={this.state.mode} setprogress={this.setprogress}/>} />
           </Routes>
         </Router>
       </>

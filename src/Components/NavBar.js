@@ -28,8 +28,8 @@ export class NavBar extends Component {
   ShowingAlert = () => {
     Swal.fire({
       title: "Important Message...",
-      text: "Right now, just news from the USA is available. Use it and have fun we're giving you some amazing content !!",
-      icon: "exclamation",
+      text: "Only english is available for now, but stay connected we are working on it!!",
+      icon: "info",
     });
   }
   
@@ -64,7 +64,7 @@ export class NavBar extends Component {
        { code: 'id', name: 'Indonesia' },
        { code: 'ie', name: 'Ireland' },
        { code: 'il', name: 'Israel' },
-      //  { code: 'in', name: 'India' },
+       { code: 'in', name: 'India' },
        { code: 'it', name: 'Italy' },
        { code: 'jp', name: 'Japan' },
        { code: 'kr', name: 'South Korea' },
@@ -133,7 +133,7 @@ export class NavBar extends Component {
             <ul className="dropdown-menu">
               {categories.map((category) => (
                 <li key={category} onClick={() => this.updateCategory(category)}>
-                  <Link className="dropdown-item hover:text-white leading-10 hover:bg-slate-800" to={`/country/usa/${category}`}>
+                  <Link className="dropdown-item hover:text-white leading-10 hover:bg-slate-800" to={`/country/us/${category}`}>
                     {category.charAt(0).toUpperCase() + category.slice(1)}
                   </Link>
                 </li>
@@ -157,8 +157,8 @@ export class NavBar extends Component {
           </div>
 
 
-          <div className="dropdown mr-2">
-            <a className="btn btn-secondary dropdown-toggle bg-gray-800" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div onClick={this.ShowingAlert} className="dropdown mr-2">
+            <a className="btn btn-secondary dropdown-toggle bg-gray-800" href="/" disabled role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Select Language
             </a>
             <ul className="dropdown-menu h-96 overflow-scroll">

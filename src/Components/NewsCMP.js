@@ -306,8 +306,7 @@ export class NewsCMP extends Component {
    async UpdateData() {
     try {
       this.props.setprogress(20);
-      // const URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&pageSize=${this.state.pageSize}&page=${this.state.page}&apiKey=${this.state.apiKey}`;
-      const URL = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&language=${this.props.language}&pageSize=${this.state.pageSize}&apiKey=${this.state.apiKey}`;
+      const URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&pageSize=${this.state.pageSize}&apiKey=${this.state.apiKey}`;
       console.log(URL);
       
       document.title = `NewsMonkey - ${this.Capitalize(this.props.category)}`;
@@ -315,17 +314,19 @@ export class NewsCMP extends Component {
       let data = await fetch(URL);
       let parsedData = await data.json();
       console.log(parsedData);
+      console.log(this.state.totalResults);
+      
       
       this.props.setprogress(50);
       this.setState({
-        // articles: parsedData.articles && parsedData.articles.length > 0 ? parsedData.articles : this.state.defaultArticles,
-        articles: parsedData.articles,
+        articles: parsedData.articles || [],
         totalResults: parsedData.totalResults,
         Spinner: false,
       });
       this.props.setprogress(100);
     } catch (error){
       console.error(error);
+      this.setState({ Spinner: false });
     }
    }
 
@@ -336,18 +337,13 @@ export class NewsCMP extends Component {
    componentDidUpdate(prevProps) {
      if (prevProps.country !== this.props.country || prevProps.category !== this.props.category) {
        this.UpdateData();
-     }
-     else if (prevProps.mode !== this.props.mode) {
+     } else if (prevProps.mode !== this.props.mode) {
        this.colorChanging();
      }
    }
 
    colorChanging = () => {
-     if(this.props.mode === 'dark'){
-       document.body.style.backgroundColor = 'rgb(4, 39, 67)';
-     } else {
-       document.body.style.backgroundColor = 'white';
-     }
+    document.body.style.backgroundColor = this.props.mode === 'dark' ? 'rgb(4, 39, 67)' : 'white';
    }
    
    fetchMoreDataDelay = () =>{
@@ -358,26 +354,41 @@ export class NewsCMP extends Component {
 
    fetchMoreData = async (props) => {
     this.props.setprogress(0);
-        //  const URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&pageSize=${this.state.pageSize}&page=${this.state.page+1}&apiKey=${this.state.apiKey}`;
-        const URL = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category}&pageSize=${this.state.pageSize}&page=${this.state.page + 1}&apiKey=${this.state.apiKey}`;  
+        const URL = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&language=${this.props.language}&pageSize=${this.state.pageSize}&page=${this.state.page + 1}&apiKey=${this.state.apiKey}`;  
          this.props.setprogress(20);
          let data = await fetch(URL);
          let parsedData = await data.json();
          this.props.setprogress(50);
-       this.setState({
-         articles: this.state.articles.concat(parsedData.articles),
+         this.setState(prevState => ({
+         articles: prevState.articles.concat(parsedData.articles),
          totalResults: parsedData.totalResults,
-         page: this.state.page + 1,
-       });
+         page: prevState.page + 1,
+       }));
        this.props.setprogress(100);
       };
     
+      resultisLessthanzero = () =>{
+          if(this.state.totalResults === 0){
+            return (
+              <h2 className={`content text-3xl text-center mt-3 mb-3 ${this.props.mode === 'light' ? 'text-black' : 'text-gray-700'}`}>
+            <strong>No News Available for Selected Country</strong>
+            </h2>
+        )
+      }
+      return null;
+      }
+
+
+
     
       render() {
-  const CtgryWithCntry = `USA / ${this.props.category}`.toUpperCase();
+        const CtgryWithCntry = `${this.props.country} / ${this.props.category}`.toUpperCase();
   return (
     <>
-      <h2 className={`content text-3xl text-center mt-3 mb-3 ${this.props.mode === 'light' ? 'text-black' : 'text-gray-100'}`}>
+     {this.resultisLessthanzero()}
+     {this.state.totalResults > 0 && (
+      <>
+      <h2 className={`content text-3xl text-center mt-3 mb-3 ${this.props.mode === 'light' ? 'text-black' : 'text-gray-700'}`}>
         <strong>News Monkey - Top {this.Capitalize(this.props.category)} Headlines</strong>
       </h2>
       <h1 className={`ml-28 text-xl ${this.props.mode === 'light' ? 'text-black' : 'text-gray-400'}`}>{CtgryWithCntry}</h1>
@@ -419,6 +430,8 @@ export class NewsCMP extends Component {
         </div>
         </InfiniteScroll>
       </>
+     )}
+    </>
     );
   }
 }
