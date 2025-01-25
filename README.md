@@ -47,7 +47,7 @@ Once the app is running, you will see the latest news articles displayed on the 
 
 ## Image
 
-![MonkeyNews App Screenshot](path/to/your/image.png)
+![MonkeyNews App Screenshot](https://github.com/premsharma1231/MonkeyNews/blob/main/Screenshot%20(192).png)
 
 ## Contributing
 
